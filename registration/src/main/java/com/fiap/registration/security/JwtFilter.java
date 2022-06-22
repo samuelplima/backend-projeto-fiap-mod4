@@ -40,9 +40,8 @@ public class JwtFilter extends OncePerRequestFilter {
             } catch (Exception illegal) {
                 logger.info(illegal.getMessage());
             }
-        } else {
-            logger.warn("Token null ou fora do padrao Bearer");
         }
+
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = jwtUserDetailService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,
